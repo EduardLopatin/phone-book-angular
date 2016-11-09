@@ -1,0 +1,20 @@
+{
+  "name": "phone-book-angular",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "EduardLopatin <blackbars48@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/EduardLopatin/phone-book-angular",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
