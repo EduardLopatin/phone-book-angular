@@ -2,7 +2,6 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload,
-    mainBowerFiles = require('main-bower-files'),
     uglify = require('gulp-uglify'),
     cleanCSS = require('gulp-clean-css'),
     ngConcat = require('gulp-ngconcat'),
@@ -17,8 +16,7 @@ var gulp = require('gulp'),
 
         gulp.task('js', function () {
             gulp.src('./app/**/*.js')
-                .pipe(uglify())
-                .pipe(ngConcat('app.min.js'))
+                .pipe(ngConcat('app.js'))
                 .pipe(gulp.dest(destination))
         });
 
@@ -36,20 +34,6 @@ var gulp = require('gulp'),
                 .pipe(browserSync.reload({stream: true}))
         });
 
-        gulp.task('bowerJs', function() {
-            gulp.src(mainBowerFiles('**/*.js'))
-                .pipe(uglify())
-                .pipe(concat('vendors.min.js'))
-                .pipe(gulp.dest(destination))
-        });
-
-        gulp.task('bowerCss', function() {
-            gulp.src('./bower_components/bootstrap/**/*.css')
-                .pipe(cleanCSS())
-                .pipe(concat('vendor.min.css'))
-                .pipe(gulp.dest(destination))
-        });
-
         gulp.task('serve', ['default'], function() {
             browserSync({
                 server: {
@@ -58,6 +42,8 @@ var gulp = require('gulp'),
                 notify: false
             });
 
-            gulp.watch("app/**/*.*", ['default']);
-            gulp.watch(['*.html', './app/**.*'], {cwd: './'}, reload);
+            gulp.watch("app/**/*.css", ['css'], {cwd: './'}, reload);
+            gulp.watch("app/**/*.sass", ['sass'], {cwd: './'}, reload);
+            gulp.watch("app/**/*.js", ['js'], {cwd: './'}, reload);
+            gulp.watch("./app/**/*.*", {cwd: './'}, reload);
         });
