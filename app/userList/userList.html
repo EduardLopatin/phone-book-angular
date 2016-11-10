@@ -1,5 +1,20 @@
-<div class="container-fluid" >
-    <div class="col-lg-8" style="background-color: lightblue" ng-controller="getDataCtrl">
+<div class="container-fluid mainContainer" ng-controller="userListCtrl">
+    <div class="col-lg-4 col-lg-offset-4">
+        <input type="text" class="form-control" placeholder="Search" ng-model="search">
+    </div>
+    <div class=" col-lg-offset-2 col-lg-8" ng-controller="dataCtrl">
 
+        <div class="" ng-repeat="user in userListData | filter:search">
+            <div class="col-sm-5 col-md-4 col-lg-3">
+                <div class="thumbnail text-left" style="background-color: lightcyan">
+                    <img ng-src="{{user.general.avatar}}" alt="...">
+                    <div class="">
+                        <h4>{{user.general.firstName + ' ' + user.general.lastName}}</h4>
+                        <p style="font-size: 14px">{{user.job.title}}</p>
+                        <p><a class="btn btn-primary" role="button" ng-click="setUserData(user)" >Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

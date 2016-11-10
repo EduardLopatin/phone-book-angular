@@ -45,5 +45,5 @@ var gulp = require('gulp'),
             gulp.watch("app/**/*.css", ['css'], {cwd: './'}, reload);
             gulp.watch("app/**/*.sass", ['sass'], {cwd: './'}, reload);
             gulp.watch("app/**/*.js", ['js'], {cwd: './'}, reload);
-            gulp.watch("./app/**/*.*", {cwd: './'}, reload);
+            gulp.watch("app/**/*.*", {cwd: './'}, reload);
         });

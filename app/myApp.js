@@ -1,13 +1,6 @@
 angular
-    .module('app', ['ui.router', 'getData.controller'])
-    .config(appConfig)
-    .controller('mainCtrl', mainCtrl);
-
-
-
-function mainCtrl() {
-    console.log('hee');
-}
+    .module('app', ['ui.router', 'dataOperations.controller', 'userList.controller', 'userPage.controller'])
+    .config(appConfig);
 
 
 function appConfig($stateProvider, $urlRouterProvider) {
