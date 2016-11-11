@@ -1,0 +1,13 @@
+.mainContainer{
+    padding-top: 4vh;
+}
+.addressInfo{
+    color: gray;
+}
+.title{
+    color: #0f0f0f;
+    font-family: "Arial Black";
+}
+input{
+    margin: 10px 0 10px 0;
+}
