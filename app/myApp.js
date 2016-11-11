@@ -1,5 +1,5 @@
 angular
-    .module('app', ['ui.router', 'dataOperations.controller', 'userList.controller', 'userPage.controller'])
+    .module('app', ['ui.router', 'userList.controller', 'userPage.controller'])
     .config(appConfig);
 
 
