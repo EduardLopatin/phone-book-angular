@@ -1,32 +1,31 @@
-angular
-    .module('userPage.controller', ['localStorageOperations.service'])
+angular.module('app')
     .controller('userPageCtrl', userPageCtrl);
 
     function userPageCtrl($scope, localStorageOperationsService) {
         getUserDataFromLocalStorage();
 
-        $scope.changeEMail = function () {
+        this.changeEMail = function () {
             $scope.emailOptions = true
         }
-        $scope.cancelEmailEditor = function () {
+        this.cancelEmailEditor = function () {
             $scope.emailOptions = false
         }
-        $scope.saveEmail = function (input) {
+        this.saveEmail = function (input) {
             $scope.userData.contact.email = input;
-            $scope.cancelEmailEditor();
+            this.cancelEmailEditor();
             localStorageOperationsService.setUserData($scope.userData);
             changeUserInList()
         }
 
-        $scope.changePhone = function () {
+        this.changePhone = function () {
             $scope.phoneOptions = true
         }
-        $scope.cancelPhoneEditor = function () {
+        this.cancelPhoneEditor = function () {
             $scope.phoneOptions = false
         }
-        $scope.savePhone = function (input) {
+        this.savePhone = function (input) {
             $scope.userData.contact.phone = input;
-            $scope.cancelPhoneEditor();
+            this.cancelPhoneEditor();
             localStorageOperationsService.setUserData($scope.userData);
             changeUserInList()
         }

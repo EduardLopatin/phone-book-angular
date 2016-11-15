@@ -1,18 +1,25 @@
 angular
-    .module('localStorageOperations.service', ['jsonDataOperations.service'])
+    .module('app')
     .factory('localStorageOperationsService', localStorageOperations);
 
-function localStorageOperations(jsonDataOperationsService) {
+
+
+function localStorageOperations($http) {
+
+    function getDataFromJson() {
+        return $http.get('./app/clients.json');
+    }
+
+
     var organizeAndGetData = function() {
         if(!localStorage.userList){
-            jsonDataOperationsService.getPromiseFromJson().then(function (response) {
+            getDataFromJson().then(function (response) {
                 var userListData = response.data;
                 setUserList(userListData);
                 return userListData
             })
         }else {
-          var userListData = getUserList();
-           return userListData;
+           return getUserList();
         }
     }
     var setUserList =  function (data) {
