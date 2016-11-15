@@ -5,7 +5,8 @@ angular
             $stateProvider.state({
                 name: 'userPage',
                 url: '/userPage',
-                template: '<user-page></user-page>'
+                template: '<user-page></user-page>',
+                params: {user: null}
             });
         }
     );

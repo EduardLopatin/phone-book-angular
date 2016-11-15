@@ -1,8 +1,9 @@
 angular.module('app')
     .controller('userPageCtrl', userPageCtrl);
 
-    function userPageCtrl($scope, localStorageOperationsService) {
-        getUserDataFromLocalStorage();
+    function userPageCtrl($scope, $stateParams, localStorageOperationsService, sessionStorageOperationsService) {
+        var vm = this;
+       this.userData =  sessionStorageOperationsService.organizeAndGetData($stateParams.user);
 
         this.changeEMail = function () {
             $scope.emailOptions = true
@@ -11,9 +12,9 @@ angular.module('app')
             $scope.emailOptions = false
         }
         this.saveEmail = function (input) {
-            $scope.userData.contact.email = input;
+            vm.userData.contact.email = input;
             this.cancelEmailEditor();
-            localStorageOperationsService.setUserData($scope.userData);
+            sessionStorageOperationsService.setData(vm.userData);
             changeUserInList()
         }
 
@@ -24,24 +25,21 @@ angular.module('app')
             $scope.phoneOptions = false
         }
         this.savePhone = function (input) {
-            $scope.userData.contact.phone = input;
+            vm.userData.contact.phone = input;
             this.cancelPhoneEditor();
-            localStorageOperationsService.setUserData($scope.userData);
+            sessionStorageOperationsService.setData(vm.userData);
             changeUserInList()
         }
 
         function changeUserInList() {
-            var userId = $scope.userData.address.zipCode;
+            var userId = vm.userData.address.zipCode;
             var validUserList =  localStorageOperationsService.getUserList();
             validUserList.forEach(function (user, index) {
                 var userIdInList = user.address.zipCode;
                 if(userIdInList == userId){
-                    validUserList.splice(index, 1, $scope.userData);
+                    validUserList.splice(index, 1, vm.userData);
                     localStorageOperationsService.setUserList(validUserList);
                 }
             })
-        }
-        function getUserDataFromLocalStorage() {
-            $scope.userData = localStorageOperationsService.getUserData();
         }
     }

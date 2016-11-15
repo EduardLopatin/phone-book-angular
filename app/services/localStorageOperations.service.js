@@ -16,7 +16,7 @@ function localStorageOperations($http) {
             getDataFromJson().then(function (response) {
                 var userListData = response.data;
                 setUserList(userListData);
-                return userListData
+                return getUserList();
             })
         }else {
            return getUserList();

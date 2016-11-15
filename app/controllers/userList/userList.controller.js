@@ -1,10 +1,11 @@
 angular.module('app')
     .controller('userListCtrl', userListCtrl);
 
-function userListCtrl($state, localStorageOperationsService) {
-    this.userListData = localStorageOperationsService.organizeAndGetData();
+function userListCtrl($scope, $state, localStorageOperationsService) {
+    // $scope.userListData = localStorageOperationsService.organizeAndGetData();
+    console.log(localStorageOperationsService.organizeAndGetData());
+
     this.setUserData = function (user) {
-        this.userData =  localStorageOperationsService.setUserData(user);
-        $state.go('userPage', {item: this.userData})
+        $state.go('userPage', {user: user})
     };
 }
