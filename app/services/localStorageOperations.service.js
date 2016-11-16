@@ -5,21 +5,13 @@ angular
 
 
 function localStorageOperations($http) {
-
-    function getDataFromJson() {
-        return $http.get('./app/clients.json');
+var data;
+    function getResponseFromJson() {
+       return $http.get('./app/clients.json')
     }
-
-
-    var organizeAndGetData = function() {
-        if(!localStorage.userList){
-            getDataFromJson().then(function (response) {
-                var userListData = response.data;
-                setUserList(userListData);
-                return getUserList();
-            })
-        }else {
-           return getUserList();
+    var checkLocalStorage = function() {
+        if(localStorage.userList){
+           return true
         }
     }
     var setUserList =  function (data) {
@@ -30,18 +22,19 @@ function localStorageOperations($http) {
         return  JSON.parse(localStorage.userList);
 
     };
-    var setUserData =  function (data) {
+    var setUser =  function (data) {
         localStorage.userData = JSON.stringify(data)
     };
-    var getUserData = function () {
+    var getUser = function () {
         return JSON.parse(localStorage.userData)
     };
 
     return {
-        organizeAndGetData: organizeAndGetData,
+        checkLocalStorage: checkLocalStorage,
+        getResponseFromJson: getResponseFromJson,
         setUserList: setUserList,
         getUserList: getUserList,
-        setUserData: setUserData,
-        getUserData: getUserData
+        setUser: setUser,
+        getUser: getUser
     }
 }
